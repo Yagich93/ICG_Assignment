@@ -1,0 +1,34 @@
+ICG Assignment TODO
+
+OpenGL:
+- textures
+-- snow texture
+- rotation and scaling
+- fog?
+
+----
+
+Arto's feedback:
+OpenGL
+- include a list of actions which you have implemented. See the table on the course web pages (how the points are collected)
+- many items already present, I will review in detail after you have submitted the missing table.
+- totally 0 points
+
+POV-Ray
+- no submission, include also the table of what you have implemented (how the point  are collected).
+- totally 0 points
+
+----
+
+Additional info
+
+User-defined objects are the ones constructed by the creator manually (entering vertices into the program).
+
+Directed light should be included (either in the section with lighting, or to the additional section in the end; comment should be left, though).
+
+Color changing in time counts for the animation.
+
+It's a nice thing to add comments to the table entries, clarifying, what is considered by that point (which objects, what kind of animation etc.; also other comments could be left, for clarification).
+
+Might be also nice to add some kind of comments inside the code, to clarify, where the implemented items are in the program. Also mention the fact in the report (that it is searchable).
+
