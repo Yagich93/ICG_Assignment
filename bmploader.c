@@ -1,6 +1,7 @@
 /* BMP file loader */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "Image.h"
 
 /*

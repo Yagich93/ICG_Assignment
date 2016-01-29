@@ -13,16 +13,21 @@ const GLchar* VertexShader =
 	"layout(location=0) in vec4 vPos;\n"\
 	"layout(location=1) in vec4 vCol;\n"\
 	"layout(location=2) in vec4 vNor;\n"\
+	"layout(location=3) in vec2 vtexcoord;\n"\
+	
 	"out vec4 ex_Color;\n"\
+	"out vec2 tex_coord;\n"\
 
 	"uniform mat4 ModelViewMatrix;\n"\
 	"uniform mat4 ProjectionMatrix;\n"\
+
 	"uniform ivec4 lights;\n"\
 	"uniform vec4 C_L0_Amb;\n"\
 	"uniform vec4 L1_Dir, C_L1_Amb, C_L1_Dif;\n"\
 	"uniform vec4 L2_Pos, C_L2_Amb, C_L2_Dif, C_L2_Spe;\n"\
 	"uniform float L2_Shin;\n"\
 	"vec4 zer = vec4(0.0, 0.0, 0.0, 0.0);\n"\
+
 	"void main(void)\n"\
 	"{\n"\
 	"	gl_Position = ProjectionMatrix*ModelViewMatrix*vPos;\n"\
@@ -44,7 +49,30 @@ const GLchar* VertexShader =
 	"	if (lights.z==1) zer = zer + vCol*C_L2_Amb + Att_l2*(vCol*Kd_l2*C_L2_Dif + Ks_l2*C_L2_Spe);\n"\
 	"	if (lights.w==1) zer = vCol;\n"\
 	"	ex_Color = zer;\n"\
+	"	tex_coord = vtexcoord;\n"\
 	"}\n"
+
+
+
+	// "#version 330\n"\
+
+	// "layout(location=0) in vec4 in_Pos;\n"\
+	// "layout(location=1) in vec4 in_Color;\n"\
+	// "layout(location=2) in vec4 vNor;\n"\
+	// "layout(location=3) in vec2 vtexcoord;\n"\
+
+	// "out vec4 ex_Color;\n"\
+	// "out vec2 tex_coord;\n"\
+
+	// "uniform mat4 ModelViewMatrix;\n"\
+	// "uniform mat4 ProjectionMatrix;\n"\
+
+	// "void main(void)\n"\
+	// "{\n"\
+	// "	gl_Position = ProjectionMatrix*ModelViewMatrix*in_Pos;\n"\
+	// "	ex_Color = in_Color;\n"\
+	// "	tex_coord = vtexcoord;\n"\
+	// "}\n"
 };
 
 const GLchar* FragmentShader =
@@ -52,12 +80,40 @@ const GLchar* FragmentShader =
 	"#version 330\n"\
 
 	"in vec4 ex_Color;\n"\
+	"in vec2 tex_coord;\n"\
+
+	"uniform int VAONumber;\n"\
+	"uniform sampler2D mytexS; /* Snow */ \n"\
+	"uniform sampler2D mytexR; /* Roof  */ \n"\
+
 	"out vec4 out_Color;\n"\
 
 	"void main(void)\n"\
 	"{\n"\
-	"	out_Color = ex_Color;\n"\
+	"	if (VAONumber==0) out_Color = ex_Color;\n"\
+	"	if (VAONumber==1) out_Color = ex_Color*texture(mytexR, tex_coord);\n"\
+	"	if (VAONumber==2) out_Color = ex_Color*texture(mytexS, tex_coord);\n"\
+	"	if (VAONumber==3) out_Color = ex_Color;\n"\
 	"}\n"
+
+	// "#version 330\n"\
+
+	// "in vec4 ex_Color;\n"\
+	// "in vec2 tex_coord;\n"\
+
+	// "uniform int VAONumber;\n"\
+	// "uniform sampler2D mytexP; /* Plane */ \n"\
+	// "uniform sampler2D mytexR; /* Roof  */ \n"\
+
+	// "out vec4 out_Color;\n"\
+
+	// "void main(void)\n"\
+	// "{\n"\
+	// "	if (VAONumber==0) out_Color = ex_Color;\n"\
+	// "	if (VAONumber==1) out_Color = texture(mytexR, tex_coord);\n"\
+	// "	if (VAONumber==2) out_Color = texture(mytexP, tex_coord);\n"\
+	// "	if (VAONumber==3) out_Color = ex_Color;\n"\
+	// "}\n"
 };
 
 const GLuint CreateShaders(void)
