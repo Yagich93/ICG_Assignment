@@ -1,9 +1,12 @@
 ICG Assignment TODO
 
 OpenGL:
-- textures
--- snow texture
+- snow texture
+- roof texture
+- add texture references
 - rotation and scaling
+- walls texture
+- remove axes
 - fog?
 
 ----
@@ -32,3 +35,5 @@ It's a nice thing to add comments to the table entries, clarifying, what is cons
 
 Might be also nice to add some kind of comments inside the code, to clarify, where the implemented items are in the program. Also mention the fact in the report (that it is searchable).
 
+Site with textures
+http://mapdb.obsidianconflict.net/texture:oskutin-s-snow-materials

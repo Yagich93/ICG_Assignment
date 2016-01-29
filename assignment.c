@@ -492,7 +492,7 @@ void CreateVBO(void)
 
     /* Texture 1 - Crate */
     Teximage = (Image *) malloc(sizeof(Image));
-    ImageLoad("crate.bmp", Teximage);
+    ImageLoad("textures/snow_roof_texture.bmp", Teximage);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, textures[2]);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Teximage->sizeX, Teximage->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE,Teximage->data);
