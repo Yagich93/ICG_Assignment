@@ -1,12 +1,11 @@
 ICG Assignment TODO
 
 OpenGL:
-- snow texture
-- roof texture
 - add texture references
 - rotation and scaling
 - walls texture
 - remove axes
+- change alternative textures for the ground
 - fog?
 
 ----
