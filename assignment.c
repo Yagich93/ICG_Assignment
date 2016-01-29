@@ -94,14 +94,14 @@ int proj = 1;
 
 /* house/cube */
 Vertex Cube_Ver[] = {
-0.0, 0.0,  0.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-2.0, 0.0,  0.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-2.0, 2.0,  0.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-0.0, 2.0,  0.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-0.0, 0.0, -2.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-2.0, 0.0, -2.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-2.0, 2.0, -2.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-0.0, 2.0, -2.0, 1.0, 0.11, 0.57, 0.78, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0};
+0.0, 0.0,  0.0, 1.0, 0.50, 0.50, 0.50, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+2.0, 0.0,  0.0, 1.0, 0.50, 0.50, 0.50, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+2.0, 2.0,  0.0, 1.0, 0.40, 0.21, 0.11, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+0.0, 2.0,  0.0, 1.0, 0.40, 0.21, 0.11, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+0.0, 0.0, -2.0, 1.0, 0.50, 0.50, 0.50, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+2.0, 0.0, -2.0, 1.0, 0.50, 0.50, 0.50, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+2.0, 2.0, -2.0, 1.0, 0.40, 0.21, 0.11, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+0.0, 2.0, -2.0, 1.0, 0.40, 0.21, 0.11, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0};
 GLint Cube_Ind[] = {
 0,1,2, 0,2,3, 1,5,6, 1,6,2, 5,4,7, 5,7,6, 4,0,3, 4,3,7,
 3,2,6, 3,6,7, 0,4,5, 0,5,1};
@@ -379,7 +379,9 @@ void CreateVBO(void)
     int i,j,k, ind;
     GLuint loc_tex;
 
-    Image *Teximage;
+    Image *TexImgSnowRoof;
+    Image *TexImgSnow;
+
 
     float m1[16], m2[16], M[16];
     float a1[4], a2[4];
@@ -475,12 +477,15 @@ void CreateVBO(void)
 
     glGenTextures(3, textures);
 
-    /* Texture 0 - ???*/
+    /* Texture 0 - Snow */
+    TexImgSnow = (Image *) malloc(sizeof(Image));
+    ImageLoad("textures/snow_texture.bmp", TexImgSnow);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textures[0]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 64, 64, 0, GL_RGB, GL_UNSIGNED_BYTE, checker1);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, TexImgSnow->sizeX, TexImgSnow->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE,TexImgSnow->data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
+    /* Texture 1 - green checker */
     glBindTexture(GL_TEXTURE_2D, textures[1]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -490,12 +495,12 @@ void CreateVBO(void)
     glGenerateMipmap(GL_TEXTURE_2D);
 
 
-    /* Texture 1 - Crate */
-    Teximage = (Image *) malloc(sizeof(Image));
-    ImageLoad("textures/snow_roof_texture.bmp", Teximage);
+    /* Texture 2 - Snow roof */
+    TexImgSnowRoof = (Image *) malloc(sizeof(Image));
+    ImageLoad("textures/snow_roof_texture.bmp", TexImgSnowRoof);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, textures[2]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Teximage->sizeX, Teximage->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE,Teximage->data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, TexImgSnowRoof->sizeX, TexImgSnowRoof->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE,TexImgSnowRoof->data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
     for (ind=0;ind<6;ind++) {
