@@ -1,0 +1,11 @@
+;;; Windows ;;;
+
+
+; Changing directory.
+cd C:\Users\m7661\Cloud_Mail.Ru\My_Docs\LUT\ICG\ICG_Assignment
+
+; Compilation.
+gcc -o assignment.exe assignment.c shader.c matlib.c bmploader.c -lopengl32 -lglew32 -lfreeglut -lm
+
+; Executing
+assignment.exe

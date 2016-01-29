@@ -7,6 +7,8 @@
 
 #define WindowTitle "Assignment Lushin Iakov"
 
+#include "Image.h"
+
 typedef struct Vertex
 {
 	float Position[4];
