@@ -1,3 +1,5 @@
+#include "colors.inc" // Predifined colors.
+
 // Camera declaration.
 camera {
     location <0, 0, 0>
@@ -8,4 +10,13 @@ camera {
 // Room box.
 box {
     <-1, -1, -1>, <1, 1, 1>
+    pigment {
+        color Gray
+    }
+}
+
+// Helper light source.
+light_source {
+    <0, 0, 0>
+    color White
 }
