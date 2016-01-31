@@ -1,0 +1,11 @@
+;;; Windows ;;;
+
+
+; Changing directory.
+D:
+cd D:\Mail.Ru_Cloud\My_Docs\LUT\ICG\ICG_Assignment\povray
+
+; Compilation.
+povray assignment.pov +W1000 +H800-V +Q9 +P
+
+pvengine assignment.pov +W1000 +H800 -V +Q9 +P

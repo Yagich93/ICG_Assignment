@@ -8,6 +8,11 @@ OpenGL:
 - change alternative textures for the ground
 - fog?
 
+POV-Ray:
+- user guide (check requirements from Moodle)
+- table of implemented items
+- animation to gif
+
 ----
 
 Arto's feedback:
