@@ -4,3 +4,8 @@ camera {
     angle 50 // Horizontal viewing angle, less than 180 degrees.
     look_at <0, 1, 1>
 }
+
+// Room box.
+box {
+    <-1, -1, -1>, <1, 1, 1>
+}
